@@ -192,11 +192,11 @@ define(function(require, exports, module) {
                 self.show();
             });
             $trigger.on('blur.calendar', function() {
-                //self.hide();
+                self.hide();
             });
             // enable auto hide feature
             if ($trigger[0].tagName.toLowerCase() !== 'input') {
-                //self.autohide();
+                self.autohide();
             }
         },
 
