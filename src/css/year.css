@@ -1,0 +1,40 @@
+/* year */
+.ali-calendar-year {
+    border: none;
+    box-shadow: none;
+    border-collapse: separate;
+    *border-collapse: collapse;
+    border-spacing: 0;
+}
+table.ali-calendar-year tr {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #fff;
+}
+.ali-calendar-year .ali-calendar-year-column td {
+    width: 79px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+.ali-calendar-year .ali-calendar-year-column td:hover {
+    cursor: pointer;
+    background-color: #e9e9e9;
+}
+.ali-calendar-year .ali-calendar-year-column td.focused-element {
+    color: #fff;
+    background: #ffae00;
+}
+.ali-calendar-year .ali-calendar-year-column td.disabled-element {
+    background: #e2e2e2;
+    color: #c3c3c3;
+}
+.ali-calendar-year .ali-calendar-year-column td.disabled-element:hover {
+    border-color: #fff;
+}

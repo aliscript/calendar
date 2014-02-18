@@ -1,0 +1,45 @@
+{
+    "name": "calendar",
+    "family": "aliscript",
+    "version": "1.0.1",
+    "description": "日历控件",
+    "keywords": [
+        "widget",
+        "month",
+        "datepicker",
+        "calendar"
+    ],
+    "author": "昊祯 <harbin1053020115@gmail.com>",
+    "maintainers": [
+        "昊祯 <afc163@gmail.com>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:aliscript/calendar.git"
+    },
+    "bugs": {
+        "url": "https://github.com/aliscript/calendar/issues"
+    },
+    "tests": [],
+    "spm": {
+        "alias": {
+            "$": "$",
+            "moment": "gallery/moment/2.0.0/moment",
+            "base": "arale/base/1.1.1/base",
+            "position": "arale/position/1.0.1/position",
+            "iframe-shim": "arale/iframe-shim/1.0.2/iframe-shim",
+            "handlebars": "gallery/handlebars/1.0.2/handlebars",
+            "widget": "arale/widget/1.1.1/widget"
+        },
+        "output": [
+            "calendar.js",
+            "calendar.css",
+            "i18n/en.js",
+            "i18n/fr.js",
+            "i18n/ja.js",
+            "i18n/zh-cn.js",
+            "i18n/zh-tw.js"
+        ],
+        "styleBox": true
+    }
+}

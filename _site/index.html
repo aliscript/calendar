@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>aliscript/calendar - Dialog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="nico 0.4.7" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="image/x-icon" href="./static/css/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="./static/css/normalize.css" />
+    <link rel="stylesheet" href="./static/css/site.css" />
+    <link rel="stylesheet" href="./static/css/solarized.css" />
+<style>
+/* alipay iconfont */
+@font-face {
+  font-family: "rei";
+  src: url("https://i.alipayobjects.com/common/fonts/rei.eot?20130423"); /* IE9 */
+  src: url("https://i.alipayobjects.com/common/fonts/rei.eot?20130423#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("https://i.alipayobjects.com/common/fonts/rei.woff?20130423") format("woff"), /* chrome 6+、firefox 3.6+、Safari5.1+、Opera 11+ */
+  url("https://i.alipayobjects.com/common/fonts/rei.ttf?20130423")  format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    url("https://i.alipayobjects.com/common/fonts/rei.svg?20130423#rei") format("svg"); /* iOS 4.1- */
+}
+.iconfont {
+  font-family:"rei";
+  font-style: normal;
+  font-weight: normal;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+}
+</style>
+
+<script src="http://assets.spmjs.org/??
+seajs/seajs/2.1.1/sea.js,
+seajs/seajs-combo/1.0.0/seajs-combo.js,
+seajs/seajs-debug/1.0.0/seajs-debug.js,
+seajs/seajs-style/1.0.0/seajs-style.js,
+seajs/seajs-health/0.1.0/seajs-health.js,
+jquery/jquery/1.7.2/jquery.js"></script>
+<script>
+  (function() {
+
+  var query = location.search.substring(1).split('&');
+  var srcdir = 'src';
+
+  if (contain(query, 'dist')) {
+    srcdir = 'dist';
+    
+  } else if (contain(query, 'cov')) {
+    srcdir = 'src-cov';
+  }
+
+  seajs.config({
+    alias: {
+      "$": 'jquery/jquery/1.7.2/jquery',
+      "jquery": 'jquery/jquery/1.7.2/jquery',
+      "jquery-debug": 'jquery/jquery/1.7.2/jquery-debug',
+      expect: "gallery/expect/0.2.0/expect",
+      puerh: "popomore/puerh/0.1.0/puerh",
+      handlebars: "gallery/handlebars/1.0.2/handlebars",
+      sinon: "gallery/sinon/1.6.0/sinon"
+    },
+    map: [function(uri) {
+      // resolve id
+      var m = uri.match(/aliscript\/calendar\/1.0.1\/(.*)/);
+      if (m) {
+        return resolve(m[1]);
+      }
+      return uri;
+    }, function(uri) {
+      var m = uri.match(/([A-Za-z\-]+)\/[A-Za-z\-]+\/[\.0-9]+\/.+/);
+      if (m && /^alipay$/.test(m[1])) {
+        return 'http://yuan.alipay.im/assets/' + m[0];
+      }
+      return uri;
+    }],
+    comboExcludes: {test: function(uri) {
+      return uri.indexOf('http://assets.spmjs.org') === -1;
+    }}
+  });
+
+  function resolve(file) {
+    if (contain(query, 'debug')) {
+      if (file.indexOf('-debug') === -1) {
+        file = file.replace(/\.(\w+)$/, '-debug.$1');
+      }
+    }
+    return seajs.resolve("./" + srcdir + "/" + file + '#');
+  }
+
+  function contain(arr, value) {
+    for (var i in arr) {
+      if (arr[i] === value) {
+        return true;
+      }
+    }
+    return false;
+  }
+      seajs.config({ alias: {"moment":"gallery/moment/2.0.0/moment","base":"arale/base/1.1.1/base","position":"arale/position/1.0.1/position","iframe-shim":"arale/iframe-shim/1.0.2/iframe-shim","handlebars":"gallery/handlebars/1.0.2/handlebars","widget":"arale/widget/1.1.1/widget"}});
+    seajs.use([]);
+
+    seajs.config({alias: {
+      "$-debug": 'jquery/jquery/1.7.2/jquery-debug'
+        ,"base-calendar": resolve("base-calendar.js")
+        ,"base-column": resolve("base-column.js")
+        ,"calendar-tpl": resolve("calendar-tpl.js")
+        ,"calendar.css": resolve("calendar.css")
+        ,"calendar": resolve("calendar.js")
+        ,"css/date.css": resolve("css/date.css")
+        ,"css/month.css": resolve("css/month.css")
+        ,"css/year.css": resolve("css/year.css")
+        ,"date-column": resolve("date-column.js")
+        ,"double-calendar": resolve("double-calendar.js")
+        ,"i18n/en": resolve("i18n/en.js")
+        ,"i18n/fr": resolve("i18n/fr.js")
+        ,"i18n/ja": resolve("i18n/ja.js")
+        ,"i18n/zh-cn": resolve("i18n/zh-cn.js")
+        ,"i18n/zh-tw": resolve("i18n/zh-tw.js")
+        ,"month-column": resolve("month-column.js")
+        ,"year-column": resolve("year-column.js")
+    }});
+
+    // 加载依赖的 css 文件
+    var cssArray = [];
+    cssArray.push('gallery/moment/2.0.0/moment');
+    cssArray.push('arale/base/1.1.1/base');
+    cssArray.push('arale/position/1.0.1/position');
+    cssArray.push('arale/iframe-shim/1.0.2/iframe-shim');
+    cssArray.push('gallery/handlebars/1.0.2/handlebars');
+    cssArray.push('arale/widget/1.1.1/widget');
+    for (var i=0; i<cssArray.length; i++) {
+      if (cssArray[i].indexOf('.css') < 0) {
+        cssArray.splice(i, 1);
+      }
+    }
+    seajs.use(cssArray);
+  })();
+</script>
+    <script src="./static/js/site.js"></script>
+    <!--[if lt IE 9]>
+    <script src="./static/js/html5shiv.js"></script>
+    <![endif]-->
+    
+  </head>
+  <body class="">
+    <div id="body-wrapper">
+      <aside id="sidebar-wrapper">
+      <h1>
+          <a href="./">Calendar</a><sup class="package-root"><a href="/">aliscript</a></sup>
+      </h1>
+        <p class="version">当前版本：<a href="http://aralejs.org/docs/online-status.html#aliscript-calendar" title="点击查看此组件发布情况">1.0.1</a></p>
+        <p class="description">日历控件</p>
+        <p class="keywords" style="display: none;">widget</p>
+        <a class="source" href="http://github.com/aliscript/calendar" target="_blank">View the Project</a>
+        <ul id="navigation" role="navigation">
+          <li><a href="./">文档</a></li>
+          <li><a href="examples/index.html">演示</a></li>
+          <li><a class="issue-link" href="https://github.com/aliscript/calendar/issues" target="_blank">讨论</a></li>
+        </ul>
+        
+<ul id="module-output">
+  <li class="module-multiable" title="本组件共有7个子模块">文件</li>
+    <li><a data-file="calendar.js" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/calendar.js">■</a></li>
+    <li><a data-file="calendar.css" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/calendar.css">■</a></li>
+    <li><a data-file="i18n/en.js" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/i18n/en.js">■</a></li>
+    <li><a data-file="i18n/fr.js" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/i18n/fr.js">■</a></li>
+    <li><a data-file="i18n/ja.js" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/i18n/ja.js">■</a></li>
+    <li><a data-file="i18n/zh-cn.js" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/i18n/zh-cn.js">■</a></li>
+    <li><a data-file="i18n/zh-tw.js" target="_blank" href="http://assets.spmjs.org/aliscript/calendar/1.0.1/i18n/zh-tw.js">■</a></li>
+</ul>
+<div id="output-card">
+    <h3>aliscript/calendar/1.0.1/<a target="_blank" id="output-file"></a></h3>
+    <p>这是本模块的输出文件，请复制以上 ID 进行使用。</p>
+</div>
+
+      </aside>
+      <div id="content-wrapper">
+        <div id="content">
+<article class="hentry">
+  <h1 class="entry-title">Dialog</h1>
+  <div class="entry-content">
+    <p><a href="https://travis-ci.org/aralejs/dialog"><img src="https://secure.travis-ci.org/aralejs/dialog.png" alt="Build Status"></a>
+<a href="https://coveralls.io/r/aralejs/dialog"><img src="https://coveralls.io/repos/aralejs/dialog/badge.png?branch=master" alt="Coverage Status"></a></p>
+<p>基础对话框组件，提供对话框显示隐藏、dom 结构自定义、定位、select 遮挡、确定取消关闭等功能特性。</p>
+<p>本模块分为两个子组件：Dialog 和 ConfirmBox，前者提供抽象的基础容器功能，无绑定 UI 样式，后者在前者的基础上提供模态对话框的功能并提供完善的 UI 样式。</p>
+<p>Dialog 组件预设了默认样式，请单独引用 <a href="http://aralejs.org/dialog/src/dialog.css">dialog.css</a>。</p>
+<p><img src="https://i.alipayobjects.com/e/201308/xqEbLhq3p.png" alt="对话框图"></p>
+<p>Dialog 继承了 <a href="http://aralejs.org/overlay/">overlay</a>，可使用其中包括 <a href="http://aralejs.org/widget/">widget</a>、<a href="http://aralejs.org/base/">base</a>、<a href="http://aralejs.org/class/">class</a>、<a href="http://aralejs.org/events/">events</a>、<a href="http://aralejs.org/base/docs/attribute.html">attribute</a>、<a href="http://aralejs.org/base/docs/aspect.html">aspect</a> 的属性和方法。</p>
+<hr>
+<h2 id="最佳实践">最佳实践<a href="#最佳实践" class="anchor">¶</a></h2><div class="highlight"><pre><code class="javascript">seajs.use(<span class="string">'dialog'</span>, <span class="keyword">function</span>(Dialog) {
+    <span class="keyword">var</span> o = <span class="keyword">new</span> Dialog({
+        trigger: <span class="string">'#trigger'</span>,
+        content: <span class="string">'&lt;div&gt;这是 dialog 容器的内容&lt;/div&gt;'</span>
+    });
+});</code></pre></div><p>内嵌 Iframe：</p>
+<div class="highlight"><pre><code class="javascript">seajs.use(<span class="string">'dialog'</span>, <span class="keyword">function</span>(Dialog) {
+    <span class="keyword">var</span> o = <span class="keyword">new</span> Dialog({
+        trigger: <span class="string">'#trigger'</span>,
+        content: <span class="string">'https://www.alipay.com/'</span>
+    });
+});</code></pre></div><h2 id="配置说明">配置说明<a href="#配置说明" class="anchor">¶</a></h2><h3 id="trigger-element">trigger <em>element</em><a href="#trigger-element" class="anchor">¶</a></h3><p>对话框触发元素，可传递选择器。</p>
+<h3 id="content-string-element">content <em>string|element</em><a href="#content-string-element" class="anchor">¶</a></h3><p>容器的内容，可以是纯字符串、dom对象、jQuery对象、html标签字符串、以及 URL 地址。当 content 为 URL 地址时，本组件将内嵌目标页面的 Iframe。</p>
+<h3 id="hasmask-boolean">hasMask <em>boolean</em><a href="#hasmask-boolean" class="anchor">¶</a></h3><p>是否有背景遮罩层。默认为 <code>true</code>。</p>
+<h3 id="classprefix-string">classPrefix <em>string</em><a href="#classprefix-string" class="anchor">¶</a></h3><p>统一样式前缀，默认为 <code>ui-dialog</code>。</p>
+<h3 id="closetpl-string">closeTpl <em>string</em><a href="#closetpl-string" class="anchor">¶</a></h3><p>右上角的关闭链接，默认为<code>×</code>。</p>
+<h3 id="width-number-string">width <em>number|string</em><a href="#width-number-string" class="anchor">¶</a></h3><p>对话框宽度，默认 500px。</p>
+<h3 id="height-number-string">height <em>number|string</em><a href="#height-number-string" class="anchor">¶</a></h3><p>对话框高度。当设置了这个属性时，对话框高度会固定，
+下面的 autoFit 强制为 false，initialHeight 失效。</p>
+<h3 id="zindex-number">zIndex <em>number</em><a href="#zindex-number" class="anchor">¶</a></h3><p>对话框 z-index 层级，默认 999。</p>
+<h3 id="effect-string">effect <em>string</em><a href="#effect-string" class="anchor">¶</a></h3><p>简单的动画效果，none 为无动画，fade 为渐入效果。默认为 none。</p>
+<h3 id="autofit-boolean">autoFit <em>boolean</em><a href="#autofit-boolean" class="anchor">¶</a></h3><p>内嵌 Iframe 页面时是否自适应高度，默认为 true。<code>iframe 类型时有效</code></p>
+<h3 id="initialheight-number-string">initialHeight <em>number|string</em><a href="#initialheight-number-string" class="anchor">¶</a></h3><p>内嵌 Iframe 页面时对话框的初始高度（onload 后会发生变化），默认为 300px 。<code>只有当对话框是 iframe 类型时有效</code></p>
+<blockquote>
+<p>其他配置如定位参数 <code>align</code> 等请参照 <a href="http://aralejs.org/overlay/">overlay</a>。</p>
+</blockquote>
+<h2 id="实例方法">实例方法<a href="#实例方法" class="anchor">¶</a></h2><p>主要有 show、hide、render 等方法，请参照 <a href="http://aralejs.org/overlay/">overlay</a>。</p>
+<h2 id="事件说明">事件说明<a href="#事件说明" class="anchor">¶</a></h2><h3 id="complete-show">complete:show<a href="#complete-show" class="anchor">¶</a></h3><p>本事件在当 content 为 URL 地址时 Iframe 载入完毕后触发。</p>
+<div class="highlight"><pre><code class="javascript">dialogInstanse.on(<span class="string">'complete:show'</span>, <span class="keyword">function</span>() {
+    <span class="comment">// Iframe 载入完毕</span>
+});</code></pre></div><blockquote>
+<p>close 事件已经删除，可以使用 <code>.after(&#39;hide&#39;, function() {})</code> 来代替。</p>
+</blockquote>
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/aralejs/dialog/trend.png" alt="Bitdeli Badge"></a></p>
+
+  </div>
+</article>
+</div>
+      </div>
+      
+    </div>
+    <div id="footer-wrapper">
+      <footer>
+        <p class="powered"><a href="https://spmjs.org">spmjs</a> •
+<a href="http://seajs.org">Sea.js</a> •
+<a href="https://github.com/spmjs/nico-cmd">nico-cmd</a> •
+<a href="http://lab.lepture.com/nico/">nico</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

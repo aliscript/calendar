@@ -1,0 +1,70 @@
+/* date */
+.ali-calendar-date {
+    border: none;
+    box-shadow: none;
+    border-collapse: separate;
+    *border-collapse: collapse;
+    border-spacing: 0;
+}
+table.ali-calendar-date tr {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.ali-calendar-date td, .ali-calendar-date th {
+    width: 34px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+.ali-calendar-date .ali-calendar-day-column {
+}
+.ali-calendar-date .ali-calendar-day-column th {
+    border-bottom: 1px solid #d8d8d8;
+    cursor: default;
+}
+.ali-calendar-date .ali-calendar-date-column .ali-calendar-day-0,
+.ali-calendar-date .ali-calendar-date-column .ali-calendar-day-6 {
+    color: #db693d;
+}
+.ali-calendar-date .ali-calendar-date-column td:hover {
+    cursor: pointer;
+    background-color: #e9e9e9;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+.ali-calendar-date .ali-calendar-date-column td.previous-month,
+.ali-calendar-date .ali-calendar-date-column td.next-month {
+    color: #ccc;
+}
+.ali-calendar-date .ali-calendar-date-column td.previous-month:hover,
+.ali-calendar-date .ali-calendar-date-column td.next-month:hover {
+    cursor: default;
+    border-color: #fff;
+}
+.ali-calendar-date .ali-calendar-date-column td.focused-element {
+    color: #fff;
+    background: #ffae00;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.ali-calendar-date .ali-calendar-date-column td.disabled-element {
+    background: #e2e2e2 !important;
+    color: #c3c3c3;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+.ali-calendar-date .ali-calendar-date-column td.disabled-element:hover {
+    border-color: #fff;
+    color: #c3c3c3;
+    background: #e2e2e2 !important;
+}
